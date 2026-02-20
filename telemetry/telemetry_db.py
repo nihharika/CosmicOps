@@ -1,7 +1,6 @@
 import os
 import numpy as np
 
-
 class TelemetryDB:
 
     def __init__(self, path="data/telemetry"):
