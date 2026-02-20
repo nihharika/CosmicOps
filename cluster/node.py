@@ -39,4 +39,5 @@ if __name__ == "__main__":
     raft = RaftNode(args.id, args.peers, args.port)
 
     server = NodeServer(port=args.port)
+    
     server.start(request_handler)
