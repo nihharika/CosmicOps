@@ -29,7 +29,9 @@ class RaftNode:
 
         threading.Thread(target=self.election_loop, daemon=True).start()
 
+    # -------------------------
     # Election Logic
+    # -------------------------
 
     def election_loop(self):
         while True:
@@ -71,7 +73,9 @@ class RaftNode:
         print(f"[{self.node_id}] LEADER term={self.current_term}")
         threading.Thread(target=self.heartbeat_loop, daemon=True).start()
 
+    # -------------------------
     # Heartbeat
+    # -------------------------
 
     def heartbeat_loop(self):
         while self.role == "leader":
@@ -85,7 +89,9 @@ class RaftNode:
                     pass
             time.sleep(1)
 
+    # -------------------------
     # Replication
+    # -------------------------
 
     def replicate_log(self, value):
         if self.role != "leader":
@@ -119,7 +125,9 @@ class RaftNode:
 
         return {"status": "failed"}
 
+    # -------------------------
     # RPC Handlers
+    # -------------------------
 
     def handle_vote_request(self, term, candidate_id):
         if term > self.current_term:

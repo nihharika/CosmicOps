@@ -47,8 +47,9 @@ class RaftStorage:
         with open(self.log_file, "w") as f:
             json.dump(logs, f)
 
-    def create_snapshot(self, commit_index, log):
-      snapshot_file = os.path.join(self.dir, "snapshot.json")
+
+def create_snapshot(self, commit_index, log):
+    snapshot_file = os.path.join(self.dir, "snapshot.json")
     with open(snapshot_file, "w") as f:
         json.dump({
             "commit_index": commit_index,
