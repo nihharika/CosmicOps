@@ -20,16 +20,14 @@ class StorageEngine:
 
         self.buffer = []
 
-        # Create files if they don’t exist
+    # Create files if they don’t exist
         if not os.path.exists(self.data_file):
             open(self.data_file, "wb").close()
 
         if not os.path.exists(self.index_file):
             open(self.index_file, "wb").close()
 
-    # ---------------------------------
     # Insert
-    # ---------------------------------
 
     def insert(self, timestamp, value):
         self.buffer.append((timestamp, value))
@@ -60,9 +58,7 @@ class StorageEngine:
 
         self.buffer = []
 
-    # ---------------------------------
     # Query
-    # ---------------------------------
 
     def query_range(self, start_ts, end_ts):
         results = []
@@ -78,7 +74,7 @@ class StorageEngine:
                 if block_end < start_ts or block_start > end_ts:
                     continue
 
-                # Check cache first
+     ##Check cache first
                 if offset in self.cache:
                     timestamps, values = self.cache[offset]
                 else:
@@ -102,9 +98,7 @@ class StorageEngine:
 
         return results
 
-    # ---------------------------------
-    # Graceful shutdown
-    # ---------------------------------
+  ##Graceful shutdown
 
     def close(self):
         self.flush_block()
